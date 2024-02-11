@@ -68,7 +68,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/esp', espRouter);
 app.use('/', (req, res, next) => {
   res.json({
-    status: 'Active',
+    status: 'active',
     message: 'Server Running',
   });
 });
