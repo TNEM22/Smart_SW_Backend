@@ -13,6 +13,8 @@ const client = new WebSocketClient();
 
 client.on('connectFailed', (error) => {
   console.log(`Connect Error: ${error.toString()}`);
+  console.log('Reconnecting to websocket...');
+  client.connect('wss://smart-sw.onrender.com/ws/nodemcuadmin');
 });
 
 client.on('connect', (connection) => {
@@ -22,6 +24,8 @@ client.on('connect', (connection) => {
   });
   connection.on('close', () => {
     console.log('Connection Closed');
+    console.log('Reconnecting to websocket...');
+    client.connect('wss://smart-sw.onrender.com/ws/nodemcuadmin');
   });
   connection.on('message', (message) => {
     let data = null;
@@ -44,7 +48,7 @@ client.on('connect', (connection) => {
   });
 });
 
-client.connect('ws://smart-sw.onrender.com/ws/nodemcuadmin');
+client.connect('wss://smart-sw.onrender.com/ws/nodemcuadmin');
 
 const app = express();
 
