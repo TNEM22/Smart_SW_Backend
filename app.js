@@ -66,6 +66,12 @@ app.use(express.static(`${__dirname}/public`));
 // Routes
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/esp', espRouter);
+app.use('/', (req, res, next) => {
+  res.json({
+    status: 'Active',
+    message: 'Server Running',
+  });
+});
 
 // Error Handling
 app.all('*', (req, res, next) => {
