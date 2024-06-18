@@ -18,15 +18,28 @@ exports.getAllEsp = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllSwitch = catchAsync(async (req, res, next) => {
-  const switches = await Switch.find({
-    esp: req.body.esp,
-  });
+  let esp = await Esp.find({ user: req.user._id });
+  const switches = esp[0].switches;
+  let states = [];
+
+  states.push(+(await Switch.findById(switches[0])).state);
+  states.push(+(await Switch.findById(switches[1])).state);
+  states.push(+(await Switch.findById(switches[2])).state);
+  states.push(+(await Switch.findById(switches[3])).state);
+
+  // switches.forEach(async (sw) => {
+  //   let aSwitch = await Switch.findById(sw);
+  //   states.push(aSwitch.state);
+  // });
 
   res.status(200).json({
     status: 'success',
     results: switches.length,
     data: {
       switches,
+    },
+    states: {
+      states,
     },
   });
 });
