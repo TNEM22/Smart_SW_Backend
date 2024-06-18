@@ -11,10 +11,12 @@ const WebSocketClient = require('websocket').client;
 
 const client = new WebSocketClient();
 
+const ws = 'smartswwsrailway-production.up.railway.app';
+
 client.on('connectFailed', (error) => {
   console.log(`Connect Error: ${error.toString()}`);
   console.log('Reconnecting to websocket...');
-  client.connect('wss://smart-sw.onrender.com/ws/nodemcuadmin');
+  client.connect('wss://' + ws + '/ws/nodemcuadmin');
 });
 
 client.on('connect', (connection) => {
@@ -25,7 +27,7 @@ client.on('connect', (connection) => {
   connection.on('close', () => {
     console.log('Connection Closed');
     console.log('Reconnecting to websocket...');
-    client.connect('wss://smart-sw.onrender.com/ws/nodemcuadmin');
+    client.connect('wss://' + ws + '/ws/nodemcuadmin');
   });
   connection.on('message', (message) => {
     let data = null;
@@ -48,7 +50,7 @@ client.on('connect', (connection) => {
   });
 });
 
-client.connect('wss://smart-sw.onrender.com/ws/nodemcuadmin');
+client.connect('wss://' + ws + '/ws/nodemcuadmin');
 
 const app = express();
 
