@@ -16,14 +16,16 @@ async function updateDb(data) {
     const esp = data.split(':')[0];
     const sw = data.split(':')[1].split('?')[0];
     let state = data.split(':')[1].split('?')[1];
-    if (state === '1') {
-      state = true;
-    } else {
-      state = false;
-    }
-    const aesp = await Esp.findById(esp);
-    if (sw <= aesp.switches.length) {
-      await Switch.findByIdAndUpdate(aesp.switches[sw], { state: state });
+    if (sw != 'r') {
+      if (state === '1') {
+        state = true;
+      } else {
+        state = false;
+      }
+      const aesp = await Esp.findById(esp);
+      if (sw <= aesp.switches.length) {
+        await Switch.findByIdAndUpdate(aesp.switches[sw], { state: state });
+      }
     }
   } catch (e) {
     console.log(e);
