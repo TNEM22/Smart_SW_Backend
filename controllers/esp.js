@@ -58,9 +58,12 @@ exports.createEsp = catchAsync(async (req, res, next) => {
 // Qr code process
 exports.createSwitches = catchAsync(async (req, res, next) => {
   let switches = [];
-  const esp = await Esp.findOneAndUpdate(req.body.id, {
-    user: req.user.id,
-  });
+  const esp = await Esp.findOneAndUpdate(
+    { id: req.body.id },
+    {
+      user: req.user.id,
+    },
+  );
   for (let i = 0; i < esp.noOfSwitches; i += 1) {
     switches.push({ esp: esp._id });
   }
