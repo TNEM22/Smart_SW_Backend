@@ -11,7 +11,7 @@ const WebSocketClient = require('websocket').client;
 
 const client = new WebSocketClient();
 
-const ws = 'smartswwsrailway-production.up.railway.app';
+const ws = 'smart-sw.onrender.com';
 
 client.on('connectFailed', (error) => {
   console.log(`Connect Error: ${error.toString()}`);
