@@ -11,7 +11,7 @@ The original architecture consisted of two separate servers:
 - **[Node.js Backend](https://github.com/TNEM22/Smart_SW_Backend)**: Responsible for user management, authentication, and REST API routes.
 - **[FastAPI WebSocket Server](https://github.com/TNEM22/Smart_SW_WS_render)**: Handled real-time device communication over WebSockets.
 
-An Android application (built using Kotlin in Android Studio) acted as the client for users to control and monitor their devices. While functional, this dual-server system increased complexity, latency, and deployment cost.
+An Android application (built using Android Studio) acted as the client for users to control and monitor their devices. While functional, this dual-server system increased complexity, latency, and deployment cost.
 
 ## New Implementation _(In Progress)_
 
